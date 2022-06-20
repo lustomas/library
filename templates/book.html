@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły książki</title>
+    <style>
+        h2 {font-size: 30px; margin: auto}
+        input {font-size: 15px; margin: auto}
+       table, th, tr, td {border: 1px solid black;font-size: 20px; margin: 5px}
+    </style>
+</head>
+<body>
+    <h2> Zmień: </h2>
+    <form method="POST" action="/books/{{ book_id }}/">
+        {{ form.hidden_tag() }}
+        <table>
+            {% for field in form if field.widget.input_type != 'hidden' %}
+                <tr>
+                    <th>{{ field.label }} {% if field.flags.required %}*{% endif %}</th>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Potwierdź">
+    </form>
+</body>
+</html>
